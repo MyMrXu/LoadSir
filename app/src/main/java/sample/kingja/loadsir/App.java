@@ -27,11 +27,6 @@ public class App extends Application {
         }
 
         LoadSir.beginBuilder()
-                .addCallback(new ErrorCallback())
-                .addCallback(new EmptyCallback())
-                .addCallback(new LoadingCallback())
-                .addCallback(new TimeoutCallback())
-                .addCallback(new CustomCallback())
                 .setDefaultCallback(LoadingCallback.class)
                 .commit();
     }

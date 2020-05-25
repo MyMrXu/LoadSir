@@ -65,18 +65,12 @@ public class LoadSir {
     }
 
     public static class Builder {
-        private List<Callback> callbacks = new ArrayList<>();
         private List<ITarget> targetContextList = new ArrayList<>();
         private Class<? extends Callback> defaultCallback;
 
         {
             targetContextList.add(new ActivityTarget());
             targetContextList.add(new ViewTarget());
-        }
-
-        public Builder addCallback(@NonNull Callback callback) {
-            callbacks.add(callback);
-            return this;
         }
 
         /**
@@ -98,9 +92,6 @@ public class LoadSir {
             return this;
         }
 
-        List<Callback> getCallbacks() {
-            return callbacks;
-        }
 
         Class<? extends Callback> getDefaultCallback() {
             return defaultCallback;

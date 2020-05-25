@@ -31,8 +31,6 @@ public class LottieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content);
         LoadSir loadSir = new LoadSir.Builder()
-                .addCallback(new LottieLoadingCallback())
-                .addCallback(new LottieEmptyCallback())
                 .setDefaultCallback(LottieLoadingCallback.class)
                 .build();
         loadService = loadSir.register(this, new Callback.OnReloadListener() {

@@ -44,9 +44,6 @@ public class ConvertorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_convertor);
         LoadSir loadSir = new LoadSir.Builder()
-                .addCallback(new LoadingCallback())
-                .addCallback(new EmptyCallback())
-                .addCallback(new ErrorCallback())
                 .setDefaultCallback(LoadingCallback.class)
                 .build();
         loadService = loadSir.register(this, new Callback.OnReloadListener() {

@@ -46,8 +46,6 @@ public class KeepTitleFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         LinearLayout contentView = rootView.findViewById(R.id.ll_content);
         LoadSir loadSir = new LoadSir.Builder()
-                .addCallback(new EmptyCallback())
-                .addCallback(new LoadingCallback())
                 .setDefaultCallback(LoadingCallback.class)
                 .build();
         loadService = loadSir.register(contentView, new Callback.OnReloadListener() {

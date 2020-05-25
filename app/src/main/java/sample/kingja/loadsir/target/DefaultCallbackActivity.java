@@ -11,6 +11,7 @@ import com.kingja.loadsir.core.LoadSir;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import sample.kingja.loadsir.PostUtil;
 import sample.kingja.loadsir.R;
 
@@ -43,8 +44,6 @@ public class DefaultCallbackActivity extends AppCompatActivity {
                 .build();
 
         LoadSir loadSir = new LoadSir.Builder()
-                .addCallback(loadingCallback)
-                .addCallback(hintCallback)
                 .setDefaultCallback(ProgressCallback.class)
                 .build();
 

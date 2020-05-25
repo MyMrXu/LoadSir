@@ -22,30 +22,27 @@ public class LoadService<T> {
     private LoadLayout loadLayout;
     private Convertor<T> convertor;
 
-    LoadService(Convertor<T> convertor,LoadLayout loadLayout,LoadSir.Builder builder) {
+    LoadService(Convertor<T> convertor, LoadLayout loadLayout, LoadSir.Builder builder) {
         this.convertor = convertor;
         this.loadLayout = loadLayout;
         initCallback(builder);
     }
 
     private void initCallback(LoadSir.Builder builder) {
-        List<Callback> callbacks = builder.getCallbacks();
         final Class<? extends Callback> defalutCallback = builder.getDefaultCallback();
-        if (callbacks != null && callbacks.size() > 0) {
-            for (Callback callback : callbacks) {
-                loadLayout.setupCallback(callback);
-            }
-        }
+
         new Handler().post(new Runnable() {
             @Override
             public void run() {
-                if (defalutCallback != null) {
+                if (defalutCallback == null) {
+                    showSuccess();
+                } else {
                     loadLayout.showCallback(defalutCallback);
                 }
             }
         });
-
     }
+
 
     public void showSuccess() {
         loadLayout.showCallback(SuccessCallback.class);

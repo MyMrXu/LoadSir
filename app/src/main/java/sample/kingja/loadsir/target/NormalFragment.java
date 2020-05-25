@@ -36,9 +36,6 @@ public class NormalFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         LoadSir loadSir = new LoadSir.Builder()
-                .addCallback(new CustomCallback())
-                .addCallback(new LoadingCallback())
-                .addCallback(new ErrorCallback())
                 .setDefaultCallback(LoadingCallback.class)
                 .build();
         View rootView = inflater.inflate(R.layout.fragment_a_content, container, false);

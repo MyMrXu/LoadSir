@@ -27,7 +27,6 @@ public class PlaceholderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_placeholder);
         LoadSir loadSir = new LoadSir.Builder()
-                .addCallback(new PlaceholderCallback())
                 .setDefaultCallback(PlaceholderCallback.class)
                 .build();
         //do retry logic...

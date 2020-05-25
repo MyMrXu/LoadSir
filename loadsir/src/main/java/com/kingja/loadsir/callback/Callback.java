@@ -20,12 +20,12 @@ public abstract class Callback implements Serializable {
     private View rootView;
     private Context context;
     private OnReloadListener onReloadListener;
-    private boolean successViewVisible;
+    private boolean successViewVisible = false;
 
     public Callback() {
     }
 
-    Callback(View view, Context context, OnReloadListener onReloadListener) {
+    public Callback(View view, Context context, OnReloadListener onReloadListener) {
         this.rootView = view;
         this.context = context;
         this.onReloadListener = onReloadListener;

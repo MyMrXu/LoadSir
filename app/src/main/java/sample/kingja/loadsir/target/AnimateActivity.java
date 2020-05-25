@@ -10,6 +10,7 @@ import com.kingja.loadsir.core.LoadSir;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import sample.kingja.loadsir.PostUtil;
 import sample.kingja.loadsir.R;
 import sample.kingja.loadsir.callback.AnimateCallback;
@@ -34,8 +35,6 @@ public class AnimateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_content);
         // Your can change the callback on sub thread directly.
         LoadSir loadSir = new LoadSir.Builder()
-                .addCallback(new EmptyCallback())
-                .addCallback(new AnimateCallback())
                 .setDefaultCallback(AnimateCallback.class)
                 .build();
         loadService = loadSir.register(this, new Callback.OnReloadListener() {
