@@ -6,14 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import androidx.annotation.NonNull;
+
+import com.kingja.loadsir.BuildConfig;
 import com.kingja.loadsir.LoadSirUtil;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.callback.SuccessCallback;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import androidx.annotation.NonNull;
 
 /**
  * Description:TODO
@@ -63,12 +64,7 @@ public class LoadLayout extends FrameLayout {
     }
 
     public void showCallback(final Class<? extends Callback> callback) {
-        checkCallbackExist(callback);
-        if (LoadSirUtil.isMainThread()) {
-            showCallbackView(callback);
-        } else {
-            postToMainThread(callback);
-        }
+        showCallback(callback, null);
     }
 
 //    public void showCallback(Callback callback) {
@@ -98,7 +94,6 @@ public class LoadLayout extends FrameLayout {
     }
 
     private void showCallbackView(Class<? extends Callback> status) {
-        Log.e("xzwzz", "showCallbackView: " + status);
         if (preCallback != null) {
             if (preCallback == status) {
                 return;
@@ -136,16 +131,34 @@ public class LoadLayout extends FrameLayout {
         transport.order(context, callbacks.get(callback).obtainRootView());
     }
 
+    public void showCallback(final Class<? extends Callback> callback, Transport transport) {
+        checkCallbackExist(callback);
+
+        if (transport != null) {
+            transport.order(context, callbacks.get(callback).obtainRootView());
+        }
+
+        if (LoadSirUtil.isMainThread()) {
+            showCallbackView(callback);
+        } else {
+            postToMainThread(callback);
+        }
+        if(BuildConfig.DEBUG){
+            Log.d("xzwzz", "showCallback: " + callback);
+        }
+    }
+
     private void checkCallbackExist(Class<? extends Callback> callback) {
         if (!callbacks.containsKey(callback)) {
             try {
                 Callback resultCallback = callback.newInstance().setCallback(getContext(), onReloadListener);
-                Log.e("xzwzz", "checkCallbackExist: " + resultCallback);
-//                setupCallback(resultCallback);
                 addCallback(resultCallback);
+                if(BuildConfig.DEBUG){
+                    Log.d("xzwzz", "addCallback: " + resultCallback);
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.e("xzwzz", "checkCallbackExist: ???????");
             }
         }
     }

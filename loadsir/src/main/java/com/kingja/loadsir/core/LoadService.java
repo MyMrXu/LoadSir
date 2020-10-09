@@ -9,8 +9,6 @@ import android.widget.LinearLayout;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.callback.SuccessCallback;
 
-import java.util.List;
-
 /**
  * Description:TODO
  * Create Time:2017/9/6 10:05
@@ -50,6 +48,10 @@ public class LoadService<T> {
 
     public void showCallback(Class<? extends Callback> callback) {
         loadLayout.showCallback(callback);
+    }
+
+    public void showCallback(Class<? extends Callback> callback, Transport transport) {
+        loadLayout.showCallback(callback, transport);
     }
 
     public void showWithConvertor(T t) {
